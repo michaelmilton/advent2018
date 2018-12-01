@@ -1,12 +1,13 @@
-from typing import List
+from typing import List, Set
 
 def get_nums(file: str) -> List:
     with open(file, 'r') as f:
-        nums = [int(line) for line in f]
+        nums = [int(line.strip()) for line in f]
     return nums
 
 def get_frequency(freq_updates: List, start_num: int = 0) -> int:
     freq = start_num
+    frequencies: Set = set()
     for num in freq_updates:
         freq += num
     return freq
