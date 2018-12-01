@@ -17,7 +17,7 @@ assert get_frequency([-1,-2,-3]) == -6
 assert get_frequency([1,-2,3,1])
 
 if __name__ ==  '__main__':
-    file = 'day1_input.txt'
+    file = 'data/day01_input.txt'
     nums = get_nums(file)
     freq = get_frequency(nums)
     print("Frequency: " + str(freq))
