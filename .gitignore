@@ -1,0 +1,3 @@
+.DSStore
+.mypy_cache/
+.pytest_cache/
