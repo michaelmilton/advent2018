@@ -40,7 +40,7 @@ assert get_rudimentary_checksum(test_list) == 12
 
 if __name__ == '__main__':
     with open('data/day02_input.txt', 'r') as f:
-        ss = [line for line in f] 
+        ss = [line.strip() for line in f] 
 
     print(get_rudimentary_checksum(ss))
-
+    
