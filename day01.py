@@ -7,9 +7,12 @@ def get_nums(file: str) -> List:
 
 def get_frequency(freq_updates: List, start_num: int = 0) -> int:
     freq = start_num
-    frequencies: Set = set()
+    frequencies = {0}
     for num in freq_updates:
         freq += num
+        if freq in frequencies:
+            print('Recurrent frequency: ' + str(freq))
+        frequencies.add(freq)
     return freq
 
 assert get_frequency([1,1,1]) == 3
@@ -22,3 +25,5 @@ if __name__ ==  '__main__':
     nums = get_nums(file)
     freq = get_frequency(nums)
     print("Frequency: " + str(freq))
+
+    print(get_frequency([1,1,-2,1,1]))
