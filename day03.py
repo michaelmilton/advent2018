@@ -1,8 +1,22 @@
 import numpy as np
-from typing import List, Tuple
+from typing import List, Tuple, NamedTuple
+import re
 
-def parse_input(input: str) -> np.array:
-    pass
+example_input = '#4 @ 976,493: 24x21'
+
+class Claim(NamedTuple):
+    idx : int
+    from_left : int
+    from_top : int
+    width : int
+    height : int
+
+
+def parse_input(input: str):
+    tightened_input = re.sub(' *#*','', input)
+    split_input = re.split('[@,:x]', tightened_input)
+    input_ints = [int(x) for x in split_input]
+    return Claim(*input_ints)
 
 def resize_claim(input: np.matrix, size: Tuple) -> np.array:
     output = np.copy(input)
