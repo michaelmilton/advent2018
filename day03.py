@@ -11,8 +11,7 @@ class Claim(NamedTuple):
     width : int
     height : int
 
-
-def parse_input(input: str):
+def parse_claim(input: str):
     tightened_input = re.sub(' *#*','', input)
     split_input = re.split('[@,:x]', tightened_input)
     input_ints = [int(x) for x in split_input]
@@ -58,8 +57,20 @@ def get_max_dimension(input: List[np.array]) -> Tuple:
     
     return (max_x, max_y)
 
+def create_array_from_claim(claim: Claim) -> np.array:
+    pass
+
 def sum_claims(input: List[np.array]) -> np.array:
     pass
 
 def count_zeroes(input: np.array) -> int:
     pass
+
+def read_inputs(file) -> List[Claim]:
+    with open(file, 'r') as f:
+        inputs = f.readlines()
+    return [parse_claim(claim) for claim in inputs]
+
+if __name__ == '__main__':
+    filename = 'data/day03_input.txt'
+    inputs = read_inputs(filename)
