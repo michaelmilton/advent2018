@@ -96,8 +96,12 @@ def create_array_from_claim(claim: Claim) -> np.array:
 def sum_claims(input: List[np.array]) -> np.array:
     pass
 
-def count_zeroes(input: np.array) -> int:
-    pass
+def count_zeros(input: np.array) -> int:
+    return sum(1 for x in input.flatten() if x == 0)
+
+def count_nonzero(input: np.array) -> int:
+    x_shape, y_shape = input.shape
+    return x_shape * y_shape - count_zeros(input)
 
 def read_inputs(file) -> List[Claim]:
     with open(file, 'r') as f:
