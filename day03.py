@@ -17,7 +17,6 @@ def parse_claim(input: str):
     input_ints = [int(x) for x in split_input]
     return Claim(*input_ints)
 
-def resize_claim(input: np.matrix, size: Tuple) -> np.array:
     output = np.copy(input)
     input_r_size, input_c_size = input.shape
     final_r_size, final_c_size = size
@@ -38,6 +37,40 @@ def resize_claim(input: np.matrix, size: Tuple) -> np.array:
     else:
         output = np.insert(output, 
                     input_c_size, 
+                    np.zeros((final_c_size-input_c_size, final_r_size)), 
+                    axis= 1
+        )
+    
+    return output
+
+def resize_claim(input: np.array, size: Tuple, side: str = 'left') -> np.array:
+    output = np.copy(input)
+    input_r_size, input_c_size = input.shape
+    final_r_size, final_c_size = size
+    
+    row_idx = 0
+    col_idx = 0
+
+    if side == 'right':
+        row_idx = input_r_size
+        col_idx = input_c_size
+
+    # Add zeroes to rows
+    if final_r_size <= input_r_size:
+        pass
+    else:
+        output = np.insert(output, 
+                    row_idx, 
+                    np.zeros((final_r_size - input_r_size, input_c_size)), 
+                    axis= 0
+        )
+
+    # Add zeroes to columns
+    if final_c_size <= input_c_size:
+        pass
+    else:
+        output = np.insert(output, 
+                    col_idx, 
                     np.zeros((final_c_size-input_c_size, final_r_size)), 
                     axis= 1
         )
