@@ -87,6 +87,17 @@ def read_inputs(file) -> List[Claim]:
         inputs = f.readlines()
     return [parse_claim(claim) for claim in inputs]
 
+def find_overlapping_square_inches(filename) -> int:
+    claims = read_inputs(filename)
+    claim_array = [create_array_from_claim(claim) for claim in claims]
+    max_dimension = get_max_dimension(claim_array)
+    resized_claim_array = [resize_claim(claim, max_dimension, 'right') 
+                            for claim in claim_array
+    ]
+    summed_claims = sum_claims(resized_claim_array)
+    overlaps = count_nonzero(summed_claims)
+    return overlaps
+
 if __name__ == '__main__':
     filename = 'data/day03_input.txt'
-    inputs = read_inputs(filename)
+    print(find_overlapping_square_inches(filename))
