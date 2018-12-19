@@ -101,3 +101,4 @@ def find_overlapping_square_inches(filename) -> int:
 if __name__ == '__main__':
     filename = 'data/day03_input.txt'
     print(find_overlapping_square_inches(filename))
+    # Too high!
