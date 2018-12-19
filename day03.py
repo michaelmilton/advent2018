@@ -46,7 +46,17 @@ def resize_claim(input: np.matrix, size: Tuple) -> np.array:
     return output
 
 def get_max_dimension(input: List[np.array]) -> Tuple:
-    pass
+    max_x = 0
+    max_y = 0
+    
+    for array in input:
+        array_x, array_y = array.shape
+        if array_x > max_x:
+            max_x = array_x
+        if array_y > max_y:
+            max_y = array_y
+    
+    return (max_x, max_y)
 
 def sum_claims(input: List[np.array]) -> np.array:
     pass
