@@ -17,32 +17,6 @@ def parse_claim(input: str):
     input_ints = [int(x) for x in split_input]
     return Claim(*input_ints)
 
-    output = np.copy(input)
-    input_r_size, input_c_size = input.shape
-    final_r_size, final_c_size = size
-
-    # Add zeroes to rows
-    if final_r_size <= input_r_size:
-        pass
-    else:
-        output = np.insert(output, 
-                    input_r_size, 
-                    np.zeros((final_r_size - input_r_size, input_c_size)), 
-                    axis= 0
-        )
-
-    # Add zeroes to columns
-    if final_c_size <= input_c_size:
-        pass
-    else:
-        output = np.insert(output, 
-                    input_c_size, 
-                    np.zeros((final_c_size-input_c_size, final_r_size)), 
-                    axis= 1
-        )
-    
-    return output
-
 def resize_claim(input: np.array, size: Tuple, side: str = 'left') -> np.array:
     output = np.copy(input)
     input_r_size, input_c_size = input.shape
@@ -91,10 +65,15 @@ def get_max_dimension(input: List[np.array]) -> Tuple:
     return (max_x, max_y)
 
 def create_array_from_claim(claim: Claim) -> np.array:
-    pass
+    ones = np.ones([claim.height, claim.width])
+    final_array = resize_claim(ones, 
+                                (claim.height + claim.from_top, claim.width + claim.from_left),
+                                'left'
+    )
+    return final_array
 
 def sum_claims(input: List[np.array]) -> np.array:
-    pass
+    return sum(input)
 
 def count_zeros(input: np.array) -> int:
     return sum(1 for x in input.flatten() if x == 0)
